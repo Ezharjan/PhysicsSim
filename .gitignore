@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Editor / IDE
+.obsidian/
+*~
+*.swp
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vivado / FPGA build artifacts
+*.cache
+*.sim
+*.hw
+*.tmp
+*.runs
+.xil
+*.jou
+*.log
+vivado*.str
+NA
+
+# Build outputs
+*.map

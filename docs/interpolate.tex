@@ -1,0 +1,121 @@
+https://en.wikipedia.org/wiki/Angular_momentum_operator
+
+
+http://mathb.in/51333
+
+See Also:  mathb.in/45267
+
+Rotate vector V to V'
+---
+###given
+ $V$ is a vector representing a point in space to be rotated around an axis
+
+($A$, $a$) defining the axis and angle to rota- te; this is also a definition of a frame...
+
+###result
+ $V'$ is a vector rotated by the scaled frame.
+ 
+
+
+---
+
+- $ V' =  \cos(a) V + \sin( a )( V \times A) + (1-\cos( a )) ( A \cdot V ) A $
+
+
+
+### notes:
+ - To apply inverse multiply $a$ by $-1$.  The axis might also be multiplied by -1; the result is the same, computationally it's fewer operations to just modify the angle.
+ - to apply a partial timestep scale $a$ by $dT$ (something like delta-T)
+
+
+---
+## Rotate A around B
+
+###given
+A frame defined by ($A$, $a$) as the Axis and Angle, or  $(x,y,z)$ unit vector, and $\theta$. 
+
+Another frame ($B$, $b$) as the Axis and Angle  $(x,y,z)$ unit vector, and $\theta$.
+
+###result 
+
+($R'$,$\theta$) that is the composite frame rotating A around B.
+
+---
+
+- $  \theta = 2 \cos^{-1} ( \cos\frac a 2\cos\frac b 2-\sin\frac a 2\sin\frac b 2 ( A \cdot B ) )  $
+  
+- $   R = (\sin\frac b 2\cos\frac b 2)A 
+           + (\sin\frac a 2\cos\frac b 2)B 
+           + (\sin\frac a 2\sin\frac b 2)( B \times A )$
+
+- $  R' = \frac R {||R||} $  
+- $  R' = \frac R {\sin \frac \theta 2} $  
+
+or
+
+- 	
+
+
+      
+- $  R = (\sin \frac {b + a} 2 - \sin \frac {b - a} 2) A 
+           + ( \sin\frac {b - a} 2 + \sin\frac {b + a} 2) B 
+           + ( \cos\frac {b - a} 2 - \cos\frac {b + a} 2)( B \times A )$
+
+  - this version of the axis computation has a divide by $2$, but since it's being  normalized anyway, can skip the multiplication by a constant
+
+- $  R' = \frac R {||R||} $  
+- $  R' = \frac R {\sin \frac \theta 2} $  
+
+or
+
+- $\theta = 2 \cos^{-1} ( \frac { (A \cdot B) ( \cos \frac {b + a} 2  - \cos \frac {b - a} 2 ) +  \cos \frac {b - a} 2  +  \cos \frac {b + a} 2 } 2 ) $
+
+
+
+### notes:
+ - To apply inverse multiply $a$ by $-1$ 
+ - to apply a partial timestep scale $a$ by $dT$
+
+
+
+
+
+---
+
+# Interpolation
+
+### Given
+- A frame $Q$ as $(Q,q)$
+- Another frame $P$ and $(P,p)$
+- A scalar $D$ from $0$ to $1$ of the orientation between the two frames to compute.
+
+### result
+
+- $Q'$ as as the partial step between $Q$ and $P$ indicated by $D$.
+
+## Operations
+
+- Apply `Rotate A around B` to rotate $P$ around the $Q$ inversed, result with ($T$, $t$);
+- Apply `Rotate vector V to V' ` to rotate $T$ around $Q$, result with $T'$
+- use `Rotate A around B` to rotate $Q$ around ($T'$,$t \cdot D$).  Result with $Q'$  as $(Q',q')$
+
+
+# Integration
+
+### given
+- $Q$ as a frame 
+- $V$ as a velocity to rotate the frame
+
+### result
+- $R$ updated frame
+
+### Operations
+internal force
+
+- Apply `Rotate vector V to V'` to rotate $V$ around ${Q}$; moves local $V$ to global $V'$
+- Apply `Rotate A around B` to rotate ${Q}$ around $(V',v * dT)$
+
+external force
+  
+- Apply `Rotate A around B` to rotate ${Q}$ around $(V,v * dT)$
+

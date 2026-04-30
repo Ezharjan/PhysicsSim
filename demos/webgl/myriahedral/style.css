@@ -1,0 +1,137 @@
+/*@import url(http://fonts.googleapis.com/css?family=Ovo&v2);*/
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:200,300);
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  /*font-family: 'Ovo', serif;*/
+  font-size: 0.95em;
+  text-align: center;
+  /*background-color: rgb(252, 250, 225);*/
+  /*background-color: rgb(22, 25, 22);*/
+  /*background-color: rgb(216, 251, 254);*/
+  /*background: radial-gradient(ellipse at center,  rgb(125,126,125) 0%,rgb(14,14,14) 100%);*/
+  background-color: rgb(24,24,24);
+  /*background: radial-gradient(ellipse at center,  rgb(225,226,225) 0%,rgb(114,114,114) 100%);*/
+  font-family: 'Titillium Web', sans-serif;
+  color: white;
+  line-height: 1.1em;
+}
+
+header.heading {
+  position:absolute;
+  width:100%;
+  height:100px;
+  top:0;
+  left:0;
+}
+
+body.fullscreen header.heading {
+  visibility: hidden;
+}
+
+article {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+section {
+  text-align: left;
+  height: 100%;
+}
+section#abstract {
+  padding: 0 5px;
+  margin: 10px 0;
+  background: #eee;
+  border: 1px solid #ddd;
+}
+
+.controls a.title {
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
+  width: 220px;
+  display:inline-block;
+}
+.controls a {
+  color: rgb(200, 200, 200);
+}
+
+.controls p {
+  margin: 5px 10px;
+}
+
+.controls ul{
+  padding: 0px;
+  margin: 10px 20px 6px 20px;
+  list-style-type: square;
+  line-height: 1.4em;
+  font-weight: bolder;
+}
+
+ul li {
+  margin-left: 5px;
+  font-weight: normal;
+}
+.controls input {
+  width: 200px;
+  margin: 8px auto;
+  display: inline-block;
+}
+
+body.fullscreen .controls {
+  display: none;
+}
+
+img.cuts {
+  display: block;
+  width: 500px;
+  margin: 10px auto;
+  text-align: center;
+  border: 1px solid rgba(104, 100, 88, 0.08);
+}
+canvas#lumagl-canvas {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  /*background-color: rgb(252, 250, 225);*/
+  /*border: 1px solid rgba(104, 100, 88, 0.08);*/
+}
+body.debug canvas#lumagl-canvas {
+  /*background-color: rgb(22, 25, 22);*/
+  filter: drop-shadow(0px 0px 5px rgba(125,126,125, 0.5));
+}
+
+canvas.test {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  background-color: black;
+  display: none;
+}
+
+#loader {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.webgl-canvas {
+  width: 100%;
+  height: 100%;
+}
+.controls {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  width: 300px;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  height: 100%;
+  overflow: auto;
+}
+
